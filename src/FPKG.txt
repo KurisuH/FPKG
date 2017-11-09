@@ -8,8 +8,8 @@
 #include <string.h> /* memset */
 #include <unistd.h> /* close */
 
-#define LEARNING_RATE 0.2
-#define MAX_ITERATION 100
+#define LEARNING_RATE 0.1
+#define MAX_ITERATION 10
 #define NUM_INSTANCES = 100
 
 
@@ -51,15 +51,25 @@ int calculate_output(float *perceptron, int *data, int size )
 
 }
 
+/*
+ * So far just put a CSV file titled "test.csv" in the same folder and this Program will read line for line and print in console.
+ * TODO: Implement Perceptron
+ */
+
 int main() {
 
 	// Allocating enough Space for the Char Arrays. Increase if you have lines with more than 6000 Characters
 	char test_data[6000] = "";
+	char temp[20] = "";
+
 	int value[6000] = { };
 	int readval = 0;
 	int counter = 0;
 	int count = 0;
-	int output = 0;
+	int output= 0;
+
+
+
 
 
 	//Initialize and fill Peceptron with Random Weights.
@@ -68,71 +78,77 @@ int main() {
 		perceptron[iter] = randomFloat();
 	}
 
+
+
 	printf("Start Main. \n");
 
 
-	// Originally this Part would read the CSV file and analyse the amount and length of Lines as Y and X respectively. This Info is not used so far as Dynamic memory allocation
-	// turned out to be rather difficult in C.
-	FILE *file;
-
-
-	//--------------------------------------//
-
 	// -- This is the important part! -- //
 	// Here we start by opening the File and reading the it line by line.
-	file = fopen("mnist_train_small.csv", "r");
+
+
+	FILE *file;
+	file = fopen("test.csv", "r");
 	printf("\n");
-	printf("Start reading into array.\n");
+	printf("Start learning... \n");
 
 	if (file) {
 
 		// It reads the File Char by Char until the End of File.
 		while ((readval = getc(file)) != EOF) {
 
+			printf("%c", readval);
+
+
 			// Once a line is completed, we have a finished array and extract the int Values.
 			if (readval == '\n') {
 
-
-				char *str = test_data;
-				char *end = str;
-				count = 0;
-
-				// Here we extract int values via strtol and return a clean int array, rather than a char array with breaks.
-				while (*end) {
-					int n = strtol(str, &end, 10);
-
-					value[count] = n;
-					count++;
-					//printf("%d\n", n);
-					while (*end == ',') {
-						end++;
-					}
-					str = end;
-
-				}
+				printf("%c", readval);
 
 
-//--------------------------------------------------------------//
 
-//Implementation of Perceptron.
 
+				// We print the first 100 int values of the line we just read to verify.
+
+				/*
 
 				if (value[0] == 1 || value[0] == 0 ){
-				printf("Learn.\n");
 
+					printf("Start printing Array.\n");
 
 				for (int i = 100; i < 400; i++) {
 
 					printf("%i", value[i]);
 					printf("-");
+
+
+
 				}
 
-				output = calculate_output(perceptron,value,sizeof(perceptron));
+				printf("\n");
+				printf("Start printing Perceptron.\n");
 
+				for (int i = 0; i < 100; i++) {
+
+					printf("%fl", perceptron[i]);
+					printf("|");
+
+
+
+				}
+				*/
+
+
+
+//--------------------------------------------------------------//
+
+				if (value[0] == 1 || value[0] == 0 ){
+				printf("Learn.\n");
+				output = calculate_output(perceptron,value,sizeof(perceptron));
 				int error = evaluate(output, value[0]);
 
 
-				for (int i = 1; i < 785; i++) {
+				for (int i = 1; i < sizeof(perceptron); i++) {
 
 				perceptron[i] += LEARNING_RATE * (error - output) * value[i];
 
@@ -141,18 +157,13 @@ int main() {
 				}
 
 
-				printf("\n");
 				printf("Output is: ");
 				printf("%d", output);
 				printf("\n");
-				printf("Expected from Value ");
+				printf("Expected from Value [0]: ");
 				printf("%d", value[0]);
 				printf("\n");
 				printf("\n");
-
-				// We print the first 100 int values of the line we just read to verify.
-				printf("Start printing array.\n");
-
 
 
 
@@ -160,9 +171,19 @@ int main() {
 //--------------------------------------------------------------//
 
 
+				}
+
+
+
+
+
 				// Reset the Arrays so that we can fill them again. This method uses as little as possible Memory.
 				memset(test_data, 0, sizeof(test_data));
 				memset(value, 0, sizeof(value));
+				value[0]=-1;
+
+
+
 				counter = 0;
 			}
 
@@ -179,9 +200,56 @@ int main() {
 		printf("\n");
 		fclose(file);
 
-		printf("Finished, now terminating.\n");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//output = calculate_output(perceptron,temp_array[i],sizeof(perceptron));
+		//if (output == value[0]){ correct++;} else {errors++;}
+		//iterations++;
+
+
+
+
+	    printf("Finished Correct: ");
+	  //  printf("%d", correct );
+
+	    printf("\nFinished Wrong: ");
+	  //  printf("%d", errors);
+
+		printf("\nFinished, now terminating.\n");
+
+
 
 		return 0;
 	}
-}
+
 

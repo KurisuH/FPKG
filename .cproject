@@ -40,9 +40,9 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.677725708" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug"/>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.410666937.749520144" name="helloworld.c" rcbsApplicability="disable" resourcePath="src/FPKG.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.875442212.596994935">
+					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.410666937.749520144" name="helloworld.c" rcbsApplicability="disable" resourcePath="src/FPKG.txt" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.875442212.596994935">
 						<tool id="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.875442212.596994935" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.875442212">
-							<option id="gnu.c.compiler.mingw.exe.debug.option.optimization.level.558733354" name="Optimization Level" superClass="gnu.c.compiler.mingw.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.optimize" valueType="enumerated"/>
+							<option id="gnu.c.compiler.mingw.exe.debug.option.optimization.level.558733354" name="Optimization Level" superClass="gnu.c.compiler.mingw.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.most" valueType="enumerated"/>
 							<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.544669334" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 						</tool>
 					</fileInfo>
